@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "5dee48cd-b16c-4c4e-83b0-f654f84b501f",
+		"name": "keycloak-and-resource-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "exchange authorization code for access token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "sample",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "f6aca15e-3dbc-475d-8a5e-547cff463d24",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "1ec119de-7a4e-42fb-9f3a-b98b3f49aef1.fbc39e32-9ea0-4009-aa55-68060846146f.35bad630-d5b8-4472-90e5-15a97d354177",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8083/callback",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/realms/sample/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"realms",
+						"sample",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get resource from resource server",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/status/check/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"status",
+						"check",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1clFyczhPSDZzOU9rUDlMWmdfMk1FZmxYZGpQRFI0aENjVkhNWk5pbHNVIn0.eyJleHAiOjE2MzM0NDczNzQsImlhdCI6MTYzMzQ0NzA3NCwiYXV0aF90aW1lIjoxNjMzNDQ3MDY0LCJqdGkiOiIzZGRkNzBmMi02MjA5LTQ0YzMtODVkOC01NGU0NWUwN2I4NmUiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXV0aC9yZWFsbXMvc2FtcGxlIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImUxYTBmMzkwLTMzZGMtNDNjOS04NTNlLTQyOTUwNGNmY2E4YSIsInR5cCI6IkJlYXJlciIsImF6cCI6InNhbXBsZSIsInNlc3Npb25fc3RhdGUiOiJmYmMzOWUzMi05ZWEwLTQwMDktYWE1NS02ODA2MDg0NjE0NmYiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzYW1wbGUifQ.WtYT028JJny_wgs_xcl6YzAZBmAI8dxqBi24eduAJr7Lv7vP0dqcg0N0xCbqhlAgD5LYHH1DoLB8VAwu5xlWHKbnANVADa5TeV1YNDgtA5o6C7aX_T7G3Yh9zypqhegrFzC3SswQknrJaK9U_ocQk1BlMBaXkDu4pNVJjbFPBpt-qSTaz8ZYaUcQuSSD5J0bxSh_VIYoE2xh6HT7PADKoBxEcQPkqsFvvxQKCrn_XpxsZ6ln2Q8iCMREgsvJSpEiiLcVu3NGyl9d55yCwfBSS0Pm3heaBRqqlex1zZNb3z3T_B_00_1EE_0jhErFgtKFhE2gaLimgHOZlBDNjM_wNQ"
+		}
+	]
+}
