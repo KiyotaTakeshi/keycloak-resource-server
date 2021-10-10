@@ -6,6 +6,124 @@
 	},
 	"item": [
 		{
+			"name": "Code Grant Authorize",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "tr",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/auth/realms/sample/protocol/openid-connect/auth?client_id=sample&response_type=code&scope=openid profile&redirect_uri=http://localhost:8083/callback&state=sample",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"realms",
+						"sample",
+						"protocol",
+						"openid-connect",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "sample"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8083/callback"
+						},
+						{
+							"key": "state",
+							"value": "sample"
+						}
+					]
+				},
+				"description": "redirect"
+			},
+			"response": []
+		},
+		{
+			"name": "Code Grant Authorize without profile scope",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "tr",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/auth/realms/sample/protocol/openid-connect/auth?client_id=sample&response_type=code&scope=openid&redirect_uri=http://localhost:8083/callback&state=sample",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"realms",
+						"sample",
+						"protocol",
+						"openid-connect",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "sample"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "openid"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8083/callback"
+						},
+						{
+							"key": "state",
+							"value": "sample"
+						}
+					]
+				},
+				"description": "redirect"
+			},
+			"response": []
+		},
+		{
 			"name": "exchange authorization code for access token",
 			"request": {
 				"method": "POST",
@@ -35,7 +153,7 @@
 						},
 						{
 							"key": "code",
-							"value": "1ec119de-7a4e-42fb-9f3a-b98b3f49aef1.fbc39e32-9ea0-4009-aa55-68060846146f.35bad630-d5b8-4472-90e5-15a97d354177",
+							"value": "99388723-b000-437a-b07c-b53c524c5e62.d17006b0-e363-4f79-99b3-576a5d1a1ba2.35bad630-d5b8-4472-90e5-15a97d354177",
 							"type": "text"
 						},
 						{
@@ -70,6 +188,70 @@
 			"response": []
 		},
 		{
+			"name": "exchange authorization code for access token without profile scope",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "sample",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "f6aca15e-3dbc-475d-8a5e-547cff463d24",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "8aef8cd0-9411-4bbe-90b1-6d6707903f04.5f36163a-1ff4-4e2c-ac5b-2897dc75bb3c.35bad630-d5b8-4472-90e5-15a97d354177",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8083/callback",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/realms/sample/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"realms",
+						"sample",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get resource from resource server",
 			"request": {
 				"method": "GET",
@@ -80,15 +262,90 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8081/status/check/",
+					"raw": "http://localhost:8081/users/status/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
+						"users",
 						"status",
-						"check",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete resource",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/users/e1a0f390-33dc-43c9-853e-429504cfca8a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						"e1a0f390-33dc-43c9-853e-429504cfca8a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/users/e1a0f390-33dc-43c9-853e-429504cfca8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						"e1a0f390-33dc-43c9-853e-429504cfca8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token resource",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/token/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"token",
 						""
 					]
 				}
