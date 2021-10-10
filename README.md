@@ -30,7 +30,12 @@ $ ./mvnw spring-boot:run
     - [http://localhost:8000/](http://localhost:8000/)
         - username and password are "keycloak" as written in docker-compose
 
-- copy sample realm client secret for using following process
+---
+## Test API
+
+- you can use [postman collection](./postman)
+
+- copy `sample` realm client secret for using following process
 
 - access via a browser for getting authorization code
     - username is "sample"
@@ -66,7 +71,7 @@ $ curl --location --request POST 'http://localhost:8000/auth/realms/sample/proto
     - use Bearer token you got previous step
 
 ```shell
-$ curl --location --request GET 'http://localhost:8081/status/check/' \
+$ curl --location --request GET 'http://localhost:8081/user/status/' \
 --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1clFyczhPSDZzOU9rUDlMWmdfMk1FZmxYZGpQRFI0aENjVkhNWk5pbHNVIn0.eyJleHAiOjE2MDQ0NjA3NTgsImlhdCI6MTYwNDQ2MDQ1OCwiYXV0aF90aW1lIjoxNjA0NDYwMzIwLCJqdGkiOiIzYTE3YWZmYS0xMmFmLTQ2MjMtOTkzNC02Mjg4ZDViYTY2MDIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXV0aC9yZWFsbXMvc2FtcGxlIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImUxYTBmMzkwLTMzZGMtNDNjOS04NTNlLTQyOTUwNGNmY2E4YSIsInR5cCI6IkJlYXJlciIsImF6cCI6InNhbXBsZSIsInNlc3Npb25fc3RhdGUiOiI0NDdhNzVhZS1jOTIyLTQ3YTMtOGYyNi1kOTNhZjQxYzFmYTIiLCJhY3IiOiIwIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzYW1wbGUifQ.ii0O8IV1DK3lMF9VAXrt_l3QwVGjQdYCmmUPxT7HlmkPGy8KZzVnYawZ5bm4gAZ733NpgGUT4goM9cL-ZvoqaIvey8M_KP2CH9mcBP1gNFdPapzDzWJ4HjvVRR42foAZvSCVQbhKeUYAUAU0LyewxYnNtYlWnxNyL9zfP5icFSbd7M8vTvEzQ1gwDiBG6wM-6_8JrPcYJjU6X7NG9mCM4oIQ1Fc5NhyBUJvnjDv_6PMCF2ZzJTQZMn1pieGgntBntXlLe1GEr1JvOmsztyJXF2ytrBit52ZImq4yW9l2HZE4BhckZt9PQ6K6xVvvyx6uK0rpTzEaWraxnoemwwoTHA'
 ```
 
@@ -76,6 +81,7 @@ $ curl --location --request GET 'http://localhost:8081/status/check/' \
 working...
 ```
 
+---
 ## Update keycloak realm settings
 
 - [see at "Exporting a realm" section](https://hub.docker.com/r/jboss/keycloak/)
