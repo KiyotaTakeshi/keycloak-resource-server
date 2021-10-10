@@ -1,4 +1,4 @@
-package com.kiyotabgangers.resourceserverforblog;
+package com.kiyotabgangers.resourceserverforblog.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author KIYOTA, Takeshi
  */
 @RestController
-@RequestMapping("/status")
+@RequestMapping("/users")
 public class UserController {
 
-    @GetMapping("/check")
+    @GetMapping("/status")
     public String status(){
         return "working...";
     }

@@ -75,3 +75,16 @@ $ curl --location --request GET 'http://localhost:8081/status/check/' \
 ```shell
 working...
 ```
+
+## Update keycloak realm settings
+
+- [see at "Exporting a realm" section](https://hub.docker.com/r/jboss/keycloak/)
+
+```shell
+docker exec -it resource-server-for-blog-keycloak-1 /opt/jboss/keycloak/bin/standalone.sh \
+-Djboss.socket.binding.port-offset=100 -Dkeycloak.migration.action=export \
+-Dkeycloak.migration.provider=singleFile \
+-Dkeycloak.migration.realmName=sample \
+-Dkeycloak.migration.usersExportStrategy=REALM_FILE \
+-Dkeycloak.migration.file=/tmp/sample-realm.json
+```
